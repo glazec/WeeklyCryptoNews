@@ -18,9 +18,9 @@ import pandas as pd
 
 def parse(html):
     soup = BeautifulSoup(html, 'html.parser')
-
+    news_html = soup.find(class_='kx-list')
     # find all items
-    items = soup.find_all(class_='item')
+    items = news_html.find_all(class_='item')
     titles = []
     urls = []
     contents = []
@@ -47,9 +47,20 @@ def parse(html):
     return news_df
 
 
+def check_keywords(x, keywords):
+    for keyword in keywords:
+        if keyword in x:
+            return True
+    return False
+
+
 def applyTag(news_df):
+    investment_keywords = ['融资', '投资', '收购', '孵化']
+    fund_keywords = ['募集', '募资', '撤资', '基金', '风险工作室']
     news_df['tag'] = news_df['title'].apply(
-        lambda x: 'investment' if '融资' in x or '投资' in x or '收购' in x or '孵化' in x else 'others')
+        lambda x: ['investment'] if check_keywords(x, investment_keywords) else [])
+    news_df['tag'] = news_df.apply(
+        lambda row: row['tag'] + ['fund'] if check_keywords(row['title'], fund_keywords) else row['tag'], axis=1)
     return news_df
 
 
@@ -61,13 +72,13 @@ def main():
         st.stop()
     news_df = parse(html)
     news_df = applyTag(news_df)
+    tag_selector = st.selectbox('Select a tag', ('investment', 'fund'))
     for i in range(len(news_df)):
-        if news_df.iloc[i]['tag'] == 'investment':
+        if tag_selector in news_df.iloc[i]['tag']:
             print(news_df.iloc[i])
             st.markdown(
                 f"[{news_df.iloc[i]['title']}]({news_df.iloc[i]['url']})")
             st.write(news_df.iloc[i]["content"])
-
 
 
 if __name__ == "__main__":
