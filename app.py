@@ -1,12 +1,10 @@
 import streamlit as st
 from bs4 import BeautifulSoup
-import datetime
 from icecream import ic
 import sentry_sdk
 from bs4 import BeautifulSoup
 import pandas as pd
-from classifier import classifier
-import time
+# from classifier import classifier
 
 # sentry_sdk.init(
 #     dsn="https://fc880ea6ee11c5613ad2eb62d9eb2bf1@o262884.ingest.sentry.io/4505684111785984",
