@@ -99,7 +99,7 @@ def main():
     st.title("每周新闻生成器（Alpha）")
     # upload file
     st.markdown(
-        "打开 [PANews 快讯页面](https://www.panewslab.com/zh/news/index.html),向下滚动至加载出你所需要的最早日期，右键点击页面，选择“保存网页另存为”，将保存的文件上传至下方。")
+        "打开 [PANews 快讯页面](https://www.panewslab.com/zh/news/index.html),向下滚动至加载出你所需要的最早日期，右键点击页面，选择“保存网页另存为”，格式选择 WebPage Complete。将保存的文件上传至下方。")
     html = st.file_uploader("上传 PANews HTML", type="html")
     if html is not None:
         if 'news_df' not in st.session_state or st.session_state['html'] != html:
