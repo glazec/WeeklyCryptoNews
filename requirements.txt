@@ -1,4 +1,5 @@
-matplotlib
 streamlit
 icecream
 pandas
+beautifulsoup4
+sentry_sdk
