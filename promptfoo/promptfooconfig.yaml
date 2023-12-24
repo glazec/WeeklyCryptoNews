@@ -1,0 +1,72 @@
+# This configuration runs each prompt through a series of example inputs and checks if they meet requirements.
+
+prompts: [prompts.txt]
+providers: [openai:gpt-3.5-turbo]
+tests:
+  - description: Validation Hard News
+    vars:
+      value: "EJF Capital 旗下一只基金已募资 1.04 亿美元，将投资区块链等领域\n蚂蚁集团计划退出对 A&T Capital 的投资，从 1 亿美元的基金中撤资\nBitwise 已撤回将 BITC 从比特币期货基金转换为比特币和以太坊期货基金的申请\nHodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性"
+    assert:
+      - type: contains
+        value: fund,fund,other,other
+  - description: Validation Hard News 2
+    vars:
+      value: "彭博社：自年初以来 Silver Point 等对冲基金已购入价值逾 2.5 亿美元的 FTX 债权\n高盛筹集 150 亿美元购买私募股权基金股份\nUniswap 基金会近一年资助 72 个项目，承诺资金约 450 万美元\n任景信：香港数码港与 40 多支 Web3 基金联系紧密，这些基金资产总计 40 亿美元"
+    assert:
+      - type: contains
+        value: other,fund,other,other
+  - description: Hard News
+    vars:
+      value: "美国 SEC 联合其它五家监管机构对加密投资发出警告\n数据：2023 年 9 月加密市场融资 5.05 亿美元，同比下降 72.6%\n加密投资机构 Deus X Capital 宣布成立，并称已积累 10 亿美元的投资资产与资本\n美国司法部：FTX 客户、投资者和员工将在 SBF 审判中出庭作证\n南华早报：JPEX 暴雷可能成为香港历史上最大的金融欺诈案，但投资者信心会随牛市而恢复"
+    assert:
+      - type: contains
+        value: other,other,fund,other,other
+  - description: 9/27-10/2 P1
+    vars:
+      value: "美国 SEC 联合其它五家监管机构对加密投资发出警告\n区块链平台 TomoChain 宣布获 DWF Labs 七位数投资\nCoinShares：数字资产投资产品上周出现六周来首次流入，资金总额达 2100 万美元\n加密投资机构 Deus X Capital 宣布成立，并称已积累 10 亿美元的投资资产与资本\n美国司法部：FTX 客户、投资者和员工将在 SBF 审判中出庭作证\nParaX 完成战略轮融资，数字资产管理公司 Metalpha 参投"
+    assert:
+      - type: regex
+        value: "(?!investment\\b|fund\\b)\\w+,investment,(?!investment\\b|fund\\b)\\w+,fund,(?!investment\\b|fund\\b)\\w+,investment"
+        # value: regulation,investment,other,fund,regulation,investment
+  - description: 9/27-10/2 P2
+    vars:
+      value: "彭博社：Fireblocks 已收购区块链初创公司 BlockFold\nWeb3 初创公司 IYK 完成 1680 万美元种子轮融资，a16z Crypto 领投\nRipple CEO：将放弃直接收购加密信托公司 Fortress Trust\n预言机 Supra 完成超 2400 万美元融资，Animoca Brands 和 Coinbase Ventures 等参投\n链游 Fableborne 宣布迄今共融资 780 万美元"
+    assert:
+      - type: regex
+        # value: investment,investment,other,investment,investment
+        value: "investment,investment,(?!investment\\b|fund\\b)\\w+,investment,investment"
+  - description: 9/27-10/2 P3
+    vars:
+      value: "SeeDAO 战略孵化器将启动并孵化公链项目 Polis \nOKX Ventures 宣布投资 Web3 知识图谱协议 0xScope\nDeFi 初创公司 Bril Finance 完成 300 万美元种子轮融资\n以太坊网络浏览器 Rated 完成 1289 万美元 A 轮融资，Archetype 领投\nHashKey Exchange 将面向专业投资者上线 AVAX"
+    assert:
+      - type: regex
+        value: "investment,investment,investment,investment,(?!investment\\b|fund\\b)\\w+"
+        # value: investment,investment,investment,investment,exchange
+  - description: 9/27-10/2 P4
+    vars:
+      value: "Celsius 请求法院批准其以 4500 万美元从 Core Scientific 收购一处矿场\nNewman Group 战略投资 Conflux，建立生态助香港企业区块链方案扩展\n香港证监会执行董事：短期内将发布证监会授权投资产品的代币化指导意见\n华尔街日报：OpenAI 正与投资者就出售现有股票进行谈判，估值将达到 800 亿至 900 亿美元\nWeb3 开发者平台 Alchemy 收购区块链数据索引平台 Satsuma"
+    assert:
+      - type: regex
+        value: "(?!investment\\b|fund\\b)\\w+,investment,(?!investment\\b|fund\\b)\\w+,(?!investment\\b|fund\\b)\\w+,investment"
+        # value: other,investment,regulation,other,investment
+  - description: 9/27-10/2 P5
+    vars:
+      value: "比特币托管和保险平台 AnchorWatch 完成 300 万美元融资\n区块链项目 Fhenix 完成 700 万美元种子轮融资，Multicoin Capital 等领投\n链上杠杆交易平台 Avantis Labs 完成 400 万美元融资，Pantera Capital 领投\n链上杠杆交易平台 LeverFi 获得 DWF Labs 200 万美元投资\nGemini 计划未来两年向其印度古尔冈中心投资 20 亿卢比，约 2400 万美元"
+    assert:
+      - type: regex
+        value: "investment,investment,investment,investment,investment"
+        # value: investment,investment,investment,investment,investment
+  - description: 9/27-10/2 P6
+    vars:
+      value: "中国太保投资管理（香港）获批升级香港证监会牌照，可从事虚拟资产基金分销和投顾服务\nDefiLlama 推出投资组合追踪工具 LlamaFolio\n印度加密投资平台 Mudrex 已在意大利注册运营\n区块链项目 Pimlico 完成 160 万美元 Pre-Seed 轮融资，1confirmation 领投\nCoinShares：上周数字资产投资产品净流出 910 万美元"
+    assert:
+      - type: regex
+        value: "(?!investment\\b|fund\\b)\\w+,(?!investment\\b|fund\\b)\\w+,(?!investment\\b|fund\\b)\\w+,investment,(?!investment\\b|fund\\b)\\w+"
+        # value: regulation,defi,exchange,investment,other
+  - description: 9/27-10/2 P7
+    vars:
+      value: "亚马逊将向人工智能公司 Anthropic 投资 40 亿美元\nSaaS 平台 Cygnetise 完成 250 万英镑融资，用于部署区块链以实现授权签名共享\n欧洲加密基金 Eureka Partners 完成 4000 万美元融资\n南华早报：JPEX 暴雷可能成为香港历史上最大的金融欺诈案，但投资者信心会随牛市而恢复"
+    assert:
+      - type: regex
+        value: "investment,investment,fund,(?!investment\\b|fund\\b)\\w+"
+        # value: investment,investment,fund,other

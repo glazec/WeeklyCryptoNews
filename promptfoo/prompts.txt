@@ -1,0 +1,168 @@
+You are a news editor, you are categorize differnt news. Under news section, there are different pieces of news. You need to output each new's lables in tags sectionl.If the news belongs to only current and recent project/startup fundraising, tag investment. If it is about VC, big fund, only tag open new funds and raising money as fund. If not, tag other.
+
+News:
+基础设施公司 MoonPay 收购 NFT 验证所有权工具 ethpass
+Coinbase 寻求收购 FTX Europe 以扩大海外衍生品业务
+Tether 福布斯关于 “公司在 Northern Data 投资中的股份规模” 报道有误
+Binance Labs 宣布入选第六季孵化器的 12 个项目，包括 UXUY、BBOX 等
+Hodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性
+
+Tags:
+investment,investment,other,investment,other
+
+News:
+加密风投公司 Scalar Capital 将不再部署新资本，联创 Linda Xie 卸任全职投资者职务
+CoinShares：上周数字资产投资产品净流出 5350 万美元
+EJF Capital 旗下一只基金已募资 1.04 亿美元，将投资区块链等领域
+蚂蚁集团计划退出对 A&T Capital 的投资，从 1 亿美元的基金中撤资
+Oak Grove Ventures 推出 6000 万美元新基金，将投资 Web3、AI 等领域
+
+Tags:
+fund,other,fund,fund,fund
+
+
+News:
+彭博社：自年初以来 Silver Point 等对冲基金已购入价值逾 2.5 亿美元的 FTX 债权
+高盛筹集 150 亿美元购买私募股权基金股份
+Uniswap 基金会近一年资助 72 个项目，承诺资金约 450 万美元
+任景信：香港数码港与 40 多支 Web3 基金联系紧密，这些基金资产总计 40 亿美元
+
+Tags:
+other,fund,other,other
+
+News:
+{{value}}
+
+Tags:
+---
+You are an excellent news editor tasked with categorizing various news articles. For each article, tag it appropriately in the "Tags" section. If the news is solely about current or recent project/startup fundraising, tag it as "investment". If the news involves venture capital or big funds, use tags "fund" and "raising money". For all other topics, use the tag "other".
+
+News:
+基础设施公司 MoonPay 收购 NFT 验证所有权工具 ethpass
+Coinbase 寻求收购 FTX Europe 以扩大海外衍生品业务
+Tether 福布斯关于 “公司在 Northern Data 投资中的股份规模” 报道有误
+Binance Labs 宣布入选第六季孵化器的 12 个项目，包括 UXUY、BBOX 等
+Hodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性
+
+Tags:
+investment, investment, other, investment, other
+
+News:
+加密风投公司 Scalar Capital 将不再部署新资本，联创 Linda Xie 卸任全职投资者职务
+CoinShares：上周数字资产投资产品净流出 5350 万美元
+EJF Capital 旗下一只基金已募资 1.04 亿美元，将投资区块链等领域
+蚂蚁集团计划退出对 A&T Capital 的投资，从 1 亿美元的基金中撤资
+Oak Grove Ventures 推出 6000 万美元新基金，将投资 Web3、AI 等领域
+
+Tags:
+fund, other, fund, fund, fund
+
+News:
+彭博社：自年初以来 Silver Point 等对冲基金已购入价值逾 2.5 亿美元的 FTX 债权
+高盛筹集 150 亿美元购买私募股权基金股份
+Uniswap 基金会近一年资助 72 个项目，承诺资金约 450 万美元
+任景信：香港数码港与 40 多支 Web3 基金联系紧密，这些基金资产总计 40 亿美元
+
+Tags:
+other, fund, other, other
+
+News:
+{{value}}
+
+Tags:
+---
+Please categorize the following news articles based on whether they should have an "investment" tag or a "fund" tag or "other" according to the following standards:
+
+- Tag as "investment" if the news:
+  - Directly relates to funding rounds (e.g., seed, Series A, B, etc.)
+  - Is about strategic investments by firms into other companies or projects
+  - Announces new investment vehicles or funds
+
+- Tag as "fund" if the news:
+  - Relates to the launch of a new investment fund
+  - Is about significant fundraising milestones for a fund
+  - Discusses major changes in a fund's investment strategy
+  - Is about withdrawal or liquidation of a fund
+  - Reports on notable performance metrics of a fund
+  - Is about the allocation of funds to specific sectors or projects
+
+Do not tag as "investment" or "fund" if the news:
+  - Is about regulatory updates not directly affecting investment vehicles or funds
+  - Presents general market data or statistics
+  - Is about product launches, technical updates, or partnerships not directly tied to funding or a fund
+  - Is about mergers and acquisitions not involving public or private investment or a fund
+
+Otherwise tag other
+
+
+News:
+基础设施公司 MoonPay 收购 NFT 验证所有权工具 ethpass
+Coinbase 寻求收购 FTX Europe 以扩大海外衍生品业务
+Tether 福布斯关于 “公司在 Northern Data 投资中的股份规模” 报道有误
+Binance Labs 宣布入选第六季孵化器的 12 个项目，包括 UXUY、BBOX 等
+Hodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性
+
+Tags:
+investment,investment,other,investment,other
+
+News:
+加密风投公司 Scalar Capital 将不再部署新资本，联创 Linda Xie 卸任全职投资者职务
+CoinShares：上周数字资产投资产品净流出 5350 万美元
+EJF Capital 旗下一只基金已募资 1.04 亿美元，将投资区块链等领域
+蚂蚁集团计划退出对 A&T Capital 的投资，从 1 亿美元的基金中撤资
+Oak Grove Ventures 推出 6000 万美元新基金，将投资 Web3、AI 等领域
+
+Tags:
+fund,other,fund,fund,fund
+
+
+News:
+彭博社：自年初以来 Silver Point 等对冲基金已购入价值逾 2.5 亿美元的 FTX 债权
+高盛筹集 150 亿美元购买私募股权基金股份
+Uniswap 基金会近一年资助 72 个项目，承诺资金约 450 万美元
+任景信：香港数码港与 40 多支 Web3 基金联系紧密，这些基金资产总计 40 亿美元
+
+Tags:
+other,fund,other,other
+
+News:
+{{value}}
+
+Tags:
+---
+You are a news editor, you are categorize differnt news. Under news section, there are different pieces of news. You need to output each new's lables in tags section. Tags include investment, fund, other. Learn the tag in the following examples. Think about the rules of each tag and print at last. Also think about the reason why each tag belongs to each news and write at the last.
+
+News:
+基础设施公司 MoonPay 收购 NFT 验证所有权工具 ethpass
+Coinbase 寻求收购 FTX Europe 以扩大海外衍生品业务
+Tether 福布斯关于 “公司在 Northern Data 投资中的股份规模” 报道有误
+Binance Labs 宣布入选第六季孵化器的 12 个项目，包括 UXUY、BBOX 等
+Hodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性
+
+Tags:
+investment,investment,other,investment,other
+
+News:
+加密风投公司 Scalar Capital 将不再部署新资本，联创 Linda Xie 卸任全职投资者职务
+CoinShares：上周数字资产投资产品净流出 5350 万美元
+EJF Capital 旗下一只基金已募资 1.04 亿美元，将投资区块链等领域
+蚂蚁集团计划退出对 A&T Capital 的投资，从 1 亿美元的基金中撤资
+Oak Grove Ventures 推出 6000 万美元新基金，将投资 Web3、AI 等领域
+
+Tags:
+fund,other,fund,fund,fund
+
+
+News:
+彭博社：自年初以来 Silver Point 等对冲基金已购入价值逾 2.5 亿美元的 FTX 债权
+高盛筹集 150 亿美元购买私募股权基金股份
+Uniswap 基金会近一年资助 72 个项目，承诺资金约 450 万美元
+任景信：香港数码港与 40 多支 Web3 基金联系紧密，这些基金资产总计 40 亿美元
+
+Tags:
+other,fund,other,other
+
+News:
+{{value}}
+
+Tags:

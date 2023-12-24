@@ -1,0 +1,41 @@
+Make a tag for the news. If the news belongs to project/startup fundraising, tag investment. If it is about VC, big fund raising money, tag fund. If not, tag other.
+
+News:
+基础设施公司 MoonPay 收购 NFT 验证所有权工具 ethpass
+Tag:
+investment
+
+News:
+Coinbase 寻求收购 FTX Europe 以扩大海外衍生品业务
+Tag:
+investment
+
+News:
+Tether 福布斯关于 “公司在 Northern Data 投资中的股份规模” 报道有误
+Tag:
+other
+
+News:
+Binance Labs 宣布入选第六季孵化器的 12 个项目，包括 UXUY、BBOX 等
+Tag:
+investment
+
+News:
+Hodlnaut 临时司法经理反对 OPNX 的收购报价，称 FLEX 代币缺乏流动性
+Tag:
+other
+
+News:
+Oak Grove Ventures 推出 6000 万美元新基金，将投资 Web3、AI 等领域
+Tag:
+fund
+
+News:
+加密风投公司 Scalar Capital 将不再部署新资本，联创 Linda Xie 卸任全职投资者职务
+Tag:
+fund
+
+News:
+CoinShares：上周数字资产投资产品净流出 5350 万美元
+Tag:
+other
