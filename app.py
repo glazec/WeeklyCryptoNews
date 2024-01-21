@@ -200,6 +200,8 @@ def applyTag(news_df):
             "MetaCartel",
             "Permanent Ventures",
             "Seed Club",
+            "Babylon",
+            "Renzo",
         ],
     }
 
