@@ -17,33 +17,33 @@ import pandas as pd
 
 
 def parse(html):
-    soup = BeautifulSoup(html, 'html.parser')
-    news_html = soup.find(class_='kx-list')
+    soup = BeautifulSoup(html, "html.parser")
+    news_html = soup.find(class_="kx-list")
     # find all items
-    items = news_html.find_all(class_='item')
+    items = news_html.find_all(class_="item")
     titles = []
     urls = []
     contents = []
 
     for item in items:
         # extract title
-        title = item.find(class_='n-title').get_text()
+        title = item.find(class_="n-title").get_text()
 
         # extract link
-        link = item.find(class_='n-title')['href']
+        link = item.find(class_="n-title")["href"]
 
         # in case the base url is not in the 'href' attribute
         base_url = "https://www.panewslab.com"
         full_url = base_url + link
 
         # extract content
-        content = item.find('p').get_text()
+        content = item.find("p").get_text()
         contents.append(content)
         urls.append(full_url)
         titles.append(title)
 
         # print(f'Title: {title}\nLink: {full_url}\nContent: {content}\n---')
-    news_df = pd.DataFrame({'title': titles, 'url': urls, 'content': contents})
+    news_df = pd.DataFrame({"title": titles, "url": urls, "content": contents})
     return news_df
 
 
@@ -52,32 +52,181 @@ def check_keywords(x, keywords):
 
 
 def applyTag(news_df):
+    #
     keywords_dict = {
-        'investment': ['融资', '投资', '收购', '孵化'],
-        'fund': ['募集', '募资', '撤资', '基金', '风险工作室'],
-        'infra': ['基础设施', '上线', '主网', '测试网'],
-        'defi': ['DeFi', 'Uniswap', 'Aave', 'MakerDAO', 'compound'],
-        'nft': ['NFT', 'OpenSea', 'Rarible', 'SuperRare', 'Nifty Gateway'],
-        'wallet': ['钱包', 'Safe', 'MetaMask', 'imToken', 'Ledger', 'Trezor'],
-        'exchange': ['交易所'],
-        'regulation': ['监管', '法律', '法规', '政策', 'SEC', '诉讼']
+        "investment": ["融资", "投资", "收购", "孵化"],
+        "fund": ["募集", "募资", "撤资", "基金", "风险工作室"],
+        "infra": ["基础设施", "上线", "主网", "测试网"],
+        "defi": ["DeFi", "Uniswap", "Aave", "MakerDAO", "compound"],
+        "nft": ["NFT", "OpenSea", "Rarible", "SuperRare", "Nifty Gateway"],
+        "wallet": ["钱包", "Safe", "MetaMask", "imToken", "Ledger", "Trezor"],
+        "exchange": ["交易所"],
+        "regulation": ["监管", "法律", "法规", "政策", "SEC", "诉讼"],
+        "portfolio": [
+            "0x",
+            "1inch",
+            "Arbitrum",
+            "Arweave",
+            "Aztec",
+            "Big Time",
+            "ChainSafe",
+            "Celestia",
+            "ConsenSys",
+            "EigenLayer",
+            "Flashbots",
+            "Galxe",
+            "Gelato",
+            "Illuvium",
+            "Infura",
+            "MakerDAO",
+            "NEAR",
+            "Polkadot",
+            "Scroll",
+            "Starkware",
+            "zkSync",
+            "Avalanche",
+            "Conflux",
+            "Cosmos",
+            "Dfinity",
+            "IoTex",
+            "Marlin",
+            "Mina",
+            "NEAR",
+            "Nimiq",
+            "Oasis Labs",
+            "Phala",
+            "Stacks",
+            "Subspace",
+            "Theta",
+            "Vechain",
+            "Arkhivist",
+            "Brink",
+            "Centrifuge",
+            "DeBank",
+            "dHEDGE",
+            "DODO",
+            "Bluefin",
+            "FLUX",
+            "Galleon",
+            "Impossible Finance",
+            "KEEP",
+            "Kyber",
+            "Liquity",
+            "Mangata",
+            "MCDEX",
+            "Metapool",
+            "Orderly Network",
+            "prePO",
+            "Persistence",
+            "Solv",
+            "SynFutures",
+            "Synthetix",
+            "Transak",
+            "UMA",
+            "Volmex Finance",
+            "Wootrade",
+            "Aurora",
+            "Celer Network",
+            "Connext",
+            "Debridge",
+            "Moonbeam",
+            "Nil",
+            "Staiko",
+            "Automata",
+            "Blocknative",
+            "Codefi",
+            "Crust",
+            "Dappback",
+            "Diligence",
+            "Filecoin",
+            "Hats",
+            "Hexens",
+            "Kyve",
+            "Liquifi",
+            "Lisk",
+            "Ocean Protocol",
+            "Plasm",
+            "Primev",
+            "Quorum",
+            "Raiden",
+            "Runtime Verification",
+            "SISMO",
+            "Solity",
+            "Space and Time",
+            "t3rn",
+            "Truffle",
+            "zCloak network",
+            "Ancient8",
+            "Artifact",
+            "Dynasty",
+            "MixMob",
+            "NOR",
+            "Perion",
+            "Playmint",
+            "Polemos",
+            "Sharpnel",
+            "TreasureDao",
+            "Aavegotchi",
+            "Alethea AI",
+            "Catalog",
+            "CyberConnect",
+            "ETHSign",
+            "Mintbase",
+            "Mintgate",
+            "Pianity",
+            "Project Galaxy",
+            "RECUR",
+            "RMRK",
+            "Roll",
+            "Skillet",
+            "Ardrive",
+            "Coin98",
+            "Cryperium",
+            "Kravata",
+            "Push",
+            "Safe",
+            "Mask Network",
+            "MetaMask",
+            "Onekey",
+            "ONTology",
+            "Wallet Guard",
+            "DAOHaus",
+            "DAOSquare",
+            "DeFi Alliance",
+            "DoinGud",
+            "Gitcoin",
+            "Imperii",
+            "LearnWeb3",
+            "MetaCartel",
+            "Permanent Ventures",
+            "Seed Club",
+        ],
     }
 
     keywords_blacklist = {
-        'investment': ['数据：'],
-        'fund': ['数据：'],
-        'infra': ['数据：'],
-        'defi': ['数据：', ],
-        'nft': ['数据：'],
-        'wallet': ['数据：'],
-        'exchange': ['数据：'],
-        'regulation': ['数据：']
+        "investment": ["数据："],
+        "fund": ["数据："],
+        "infra": ["数据："],
+        "defi": [
+            "数据：",
+        ],
+        "nft": ["数据："],
+        "wallet": ["数据："],
+        "exchange": ["数据："],
+        "regulation": ["数据："],
+        "portfolio": ["数据：", "涨幅"],
     }
 
-    news_df['tag'] = news_df['title'].apply(lambda x: [
-        tag for tag, keywords in keywords_dict.items()
-        if check_keywords(x, keywords) and not any(blackword.lower() in x.lower() for blackword in keywords_blacklist[tag])
-    ])
+    news_df["tag"] = news_df["title"].apply(
+        lambda x: [
+            tag
+            for tag, keywords in keywords_dict.items()
+            if check_keywords(x, keywords)
+            and not any(
+                blackword.lower() in x.lower() for blackword in keywords_blacklist[tag]
+            )
+        ]
+    )
     # use classfier(title) to refine investment tag
     # for i in range(len(news_df)):
     #     if 'investment' in news_df.iloc[i]['tag']:
@@ -90,7 +239,7 @@ def applyTag(news_df):
     #         # sleep 0.5s
     #         time.sleep(0.5)
     # save to csv
-    news_df.to_csv('news_df.csv')
+    news_df.to_csv("news_df.csv")
     ic("Apply Tag")
     return news_df
 
@@ -99,24 +248,36 @@ def main():
     st.title("每周新闻生成器（Alpha）")
     # upload file
     st.markdown(
-        "打开 [PANews 快讯页面](https://www.panewslab.com/zh/news/index.html),向下滚动至加载出你所需要的最早日期，右键点击页面，选择“保存网页另存为”，格式选择 WebPage Complete。将保存的文件上传至下方。")
+        "打开 [PANews 快讯页面](https://www.panewslab.com/zh/news/index.html),向下滚动至加载出你所需要的最早日期，右键点击页面，选择“保存网页另存为”，格式选择 WebPage Complete。将保存的文件上传至下方。"
+    )
     html = st.file_uploader("上传 PANews HTML", type="html")
     if html is not None:
-        if 'news_df' not in st.session_state or st.session_state['html'] != html:
+        if "news_df" not in st.session_state or st.session_state["html"] != html:
             news_df = parse(html)
             news_df = applyTag(news_df)
-            st.session_state['news_df'] = news_df
-            st.session_state['html'] = html
+            st.session_state["news_df"] = news_df
+            st.session_state["html"] = html
         else:
-            news_df = st.session_state['news_df']
-        tag_selector = st.selectbox('Select a tag', ('investment', 'fund',
-                                    'infra', 'defi', 'nft', 'wallet', 'exchange', 'regulation'))
+            news_df = st.session_state["news_df"]
+        tag_selector = st.selectbox(
+            "Select a tag",
+            (
+                "investment",
+                "fund",
+                "infra",
+                "defi",
+                "nft",
+                "wallet",
+                "exchange",
+                "regulation",
+                "portfolio",
+            ),
+        )
         # format_string = ''
         for i in range(len(news_df)):
-            if tag_selector in news_df.iloc[i]['tag']:
+            if tag_selector in news_df.iloc[i]["tag"]:
                 # print(news_df.iloc[i])
-                st.markdown(
-                    f"[{news_df.iloc[i]['title']}]({news_df.iloc[i]['url']})")
+                st.markdown(f"[{news_df.iloc[i]['title']}]({news_df.iloc[i]['url']})")
                 st.write(news_df.iloc[i]["content"])
                 # format_string += f"{news_df.iloc[i]['title']}\n"
         # st.write(format_string)
