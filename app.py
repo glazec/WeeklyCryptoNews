@@ -34,7 +34,7 @@ def parse(html):
 
         # in case the base url is not in the 'href' attribute
         base_url = "https://www.panewslab.com"
-        full_url = base_url + link
+        full_url =link
 
         # extract content
         content = item.find("p").get_text()
